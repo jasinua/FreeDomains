@@ -1,0 +1,13 @@
+{
+  "name": "free-domains",
+  "version": "1.0.0",
+  "description": "GitOps-based free subdomain registry",
+  "private": true,
+  "scripts": {
+    "validate": "node scripts/validate.js",
+    "sync": "node scripts/sync-dns.js"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

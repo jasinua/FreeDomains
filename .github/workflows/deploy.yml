@@ -1,0 +1,37 @@
+name: Deploy DNS Records
+
+# Runs only when a PR is merged (push to main) and domain files changed.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'domains/**'
+
+permissions:
+  contents: read   # minimal permissions — no write access needed
+
+jobs:
+  deploy:
+    name: Sync DNS to Cloudflare
+    runs-on: ubuntu-latest
+
+    steps:
+      # Pin to commit SHA for supply-chain security
+      - name: Checkout code
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 2   # need HEAD and HEAD~1 for diff
+
+      - name: Set up Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: '20'
+
+      - name: Sync DNS records
+        # Secrets are safe here: this workflow only runs on code already
+        # merged to main (trusted), not on unreviewed fork code.
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_ZONE_ID: ${{ secrets.CF_ZONE_ID }}
+          BASE_DOMAIN: ${{ secrets.BASE_DOMAIN }}
+        run: node scripts/sync-dns.js

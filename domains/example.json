@@ -1,0 +1,10 @@
+{
+  "owner": {
+    "username": "octocat",
+    "email": "octocat@github.com"
+  },
+  "record": {
+    "type": "CNAME",
+    "value": "octocat.github.io"
+  }
+}

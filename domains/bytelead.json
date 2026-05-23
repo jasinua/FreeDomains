@@ -1,0 +1,10 @@
+{
+  "owner": {
+    "username": "jasinavdiu-work",
+    "email": "jasinavdiu@hotelkeyapp.com"
+  },
+  "record": {
+    "type": "CNAME",
+    "value": "bytelead.vercel.app"
+  }
+}

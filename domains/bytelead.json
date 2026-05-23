@@ -5,6 +5,6 @@
   },
   "record": {
     "type": "CNAME",
-    "value": "bytelead.vercel.app"
+    "value": "bytelead.netlify.app"
   }
 }
